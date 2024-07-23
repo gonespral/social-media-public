@@ -1,0 +1,12 @@
+[Unit]
+Description=Social Media Bot Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/social-media/src  ; Set the working directory to the src directory
+ExecStart=/path/to/social-media/src/venv/bin/python /path/to/social-media/src/your_script.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

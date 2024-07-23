@@ -1,0 +1,40 @@
+paths:
+    main_logfile: "../logs/main.log"
+    sql_database: "../databases/sqlite/sqlite.db"
+
+scheduler:
+    content_object_params:
+      - gen_func: generators.TwitterBot.image_with_quote
+        post_func: modules.twitter_api.create_tweet
+        auth_func: modules.discord_api.authorize_content
+        cron: "45 11 * * *"  # minute, hour, day, month, day of week
+        is_authorized: False  # if True, will not request authorization
+        keys_path: "../keys/thewisestoic.json"
+
+      - gen_func: generators.TwitterBot.quote_with_explanation
+        post_func: modules.twitter_api.create_tweet
+        auth_func: modules.discord_api.authorize_content
+        cron: "00 12 * * *"
+        is_authorized: False
+        keys_path: "../keys/thewisestoic.json"
+
+      - gen_func: generators.TwitterBot.image_with_quote
+        post_func: modules.twitter_api.create_tweet
+        auth_func: modules.discord_api.authorize_content
+        cron: "30 17 * * *"
+        is_authorized: False
+        keys_path: "../keys/thewisestoic.json"
+
+      - gen_func: generators.TwitterBot.random_thought
+        post_func: modules.twitter_api.create_tweet
+        auth_func: modules.discord_api.authorize_content
+        cron: "00 13 * * *"
+        is_authorized: False
+        keys_path: "../keys/thewisestoic.json"
+
+      - gen_func: generators.TwitterBot.random_opinion
+        post_func: modules.twitter_api.create_tweet
+        auth_func: modules.discord_api.authorize_content
+        cron: "15 20 * * *"
+        is_authorized: False
+        keys_path: "../keys/thewisestoic.json"
